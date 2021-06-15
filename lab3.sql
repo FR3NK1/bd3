@@ -217,3 +217,43 @@ DROP TABLE `providers`;
 DROP TABLE `warehouse_employee`;
 DROP TABLE `warehouses`;
 DROP DATABASE `cosmetics_store`;
+
+/*Модификация*/
+/*1 - связь многие ко многим для транзакций*/
+ALTER TABLE `sberbank`.`card_transaction` 
+DROP COLUMN `idTransaction`,
+ALTER TABLE `sberbank`.`card_transaction` 
+ADD CONSTRAINT `fk_idCard_transaction-idTransaction`
+  FOREIGN KEY (`idCard_transaction`)
+  REFERENCES `sberbank`.`transaction` (`idTransaction`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+ALTER TABLE `sberbank`.`credit_transaction` 
+DROP COLUMN `idTransaction`,
+ALTER TABLE `sberbank`.`credit_transaction` 
+ADD CONSTRAINT `fk_idCredit_transaction-idTransaction`
+  FOREIGN KEY (`idCredit_transaction`)
+  REFERENCES `sberbank`.`transaction` (`idTransaction`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+/*2 - добавить primary key в таблицы одногруппника*/
+ALTER TABLE `cosmetics_store`.`clients-cards` 
+ADD PRIMARY KEY (`idclients`, `iddiscont_cards`);
+
+ALTER TABLE `cosmetics_store`.`deliveries-products` 
+ADD PRIMARY KEY (`iddeliveries`, `idproducts`);
+
+ALTER TABLE `cosmetics_store`.`employees-clients` 
+ADD PRIMARY KEY (`idemployees`, `idclients`);
+
+ALTER TABLE `cosmetics_store`.`pick-up_staff` 
+ADD PRIMARY KEY (`idemployees`, `idplace_of_issue_of_goods`);
+
+ALTER TABLE `cosmetics_store`.`products-orders` 
+ADD PRIMARY KEY (`idproducts`, `idorders`);
+
+ALTER TABLE `cosmetics_store`.`warehouse_employee` 
+ADD PRIMARY KEY (`idemloyees`, `idwarehouses`);
+
