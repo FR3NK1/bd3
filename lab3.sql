@@ -225,18 +225,14 @@ DROP COLUMN `idTransaction`,
 ALTER TABLE `sberbank`.`card_transaction` 
 ADD CONSTRAINT `fk_idCard_transaction-idTransaction`
   FOREIGN KEY (`idCard_transaction`)
-  REFERENCES `sberbank`.`transaction` (`idTransaction`)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION;
+  REFERENCES `sberbank`.`transaction` (`idTransaction`);
 
 ALTER TABLE `sberbank`.`credit_transaction` 
 DROP COLUMN `idTransaction`,
 ALTER TABLE `sberbank`.`credit_transaction` 
 ADD CONSTRAINT `fk_idCredit_transaction-idTransaction`
   FOREIGN KEY (`idCredit_transaction`)
-  REFERENCES `sberbank`.`transaction` (`idTransaction`)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION;
+  REFERENCES `sberbank`.`transaction` (`idTransaction`);
 
 /*2 - добавить primary key в таблицы одногруппника*/
 ALTER TABLE `cosmetics_store`.`clients-cards` 
