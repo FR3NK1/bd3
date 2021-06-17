@@ -253,3 +253,5 @@ ADD PRIMARY KEY (`idproducts`, `idorders`);
 ALTER TABLE `cosmetics_store`.`warehouse_employee` 
 ADD PRIMARY KEY (`idemloyees`, `idwarehouses`);
 
+/*3 - переименовать таблицу contibution в investment*/
+RENAME TABLE `contribution` TO `investment`;
